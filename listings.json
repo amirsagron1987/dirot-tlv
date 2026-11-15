@@ -36,7 +36,8 @@
    "sqm": 134,
    "floor": "4",
    "ground": false,
-   "broker": false
+   "broker": false,
+   "entry": "immediate"
   },
   "40631077226483234": {
    "title": "4 חדרים משופצת ברחוב אוסישקין",
@@ -70,7 +71,8 @@
    "sqm": 85,
    "floor": "2",
    "ground": false,
-   "broker": true
+   "broker": true,
+   "entry": "immediate"
   },
   "4736960089874161": {
    "title": "4 חדרים עם מרפסת סגורה ברחוב כהנשטם",
@@ -106,7 +108,8 @@
    "price": 10000,
    "floor": "2",
    "ground": false,
-   "broker": false
+   "broker": false,
+   "entry": "immediate"
   },
   "3342526339276525": {
    "title": "4 חדרים ברחוב ליסין, ליד כיכר המדינה",
@@ -133,7 +136,8 @@
    "sqm": 100,
    "floor": "4",
    "ground": false,
-   "broker": true
+   "broker": true,
+   "entry": "immediate"
   },
   "29390390540595469": {
    "title": "4 חדרים חדשה עם 2 חניות, ליד פארק הירקון ומתחם בזל",
@@ -177,7 +181,8 @@
    "floor": "1",
    "ground": false,
    "broker": true,
-   "hood_unsure": true
+   "hood_unsure": true,
+   "entry": "immediate"
   },
   "3197829480387323": {
    "title": "4 חדרים משופצת מול פארק הירקון",
@@ -212,7 +217,8 @@
    "price": 12500,
    "sqm": 80,
    "broker": true,
-   "hood_unsure": true
+   "hood_unsure": true,
+   "entry": "immediate"
   },
   "10163988487907695": {
    "title": "4 חדרים ברחוב ליסין עם 2 חניות",
@@ -250,7 +256,8 @@
    "sqm": 110,
    "floor": "2",
    "ground": false,
-   "broker": true
+   "broker": true,
+   "entry": "2026-12-01"
   },
   "3342203209308838": {
    "title": "פנטהאוז 4 חדרים בבניין לשימור, ליד נורדאו",
@@ -285,7 +292,8 @@
    "floor": "אחרונה",
    "ground": false,
    "broker": true,
-   "hood_unsure": true
+   "hood_unsure": true,
+   "entry": "immediate"
   },
   "40666567122934244": {
    "title": "5 חדרים ברחוב ויתקין, 200 מטר מהים",

@@ -108,13 +108,23 @@ legend{font-weight:700;padding:0;margin-bottom:8px}
 .btn[disabled]{opacity:.5;cursor:default}
 .formmsg{font-size:13px;color:var(--bad);margin:0}
 
+.prog{display:flex;gap:5px}
+.prog span{flex:1;height:5px;border-radius:3px;background:var(--line)}
+.prog span.on{background:var(--sea)}
+.stepno{margin:0;font-size:13px;color:var(--muted)}
+.step legend{font-family:var(--display);font-weight:400;font-size:24px;margin-bottom:10px}
+.stepnav{display:flex;gap:10px;justify-content:space-between}
+.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line)}
+.btn.ghost[hidden]{display:none}
+.link{font:inherit;font-size:13px;background:none;border:0;color:var(--sea);text-decoration:underline;cursor:pointer;justify-self:start;padding:0}
+.form{min-height:340px;align-content:start}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
     <h1>דירות להשכרה בתל אביב</h1>
-    <p class="criteria" id="crit">ממלאים פעם אחת מה מחפשים, והרשימה מציגה רק דירות מקבוצות הפייסבוק שעונות על זה, עם קישור למודעה המקורית.</p>
+    <p class="criteria" id="crit">עונים על כמה שאלות קצרות, והרשימה מציגה רק דירות מקבוצות הפייסבוק שעונות על זה, עם קישור למודעה המקורית.</p>
     <div class="scan" id="scan"><span>טוען…</span></div>
     <div class="nav" role="group" aria-label="תצוגה">
       <button type="button" id="nav-list" aria-pressed="true">הדירות שלי</button>
@@ -147,47 +157,72 @@ legend{font-weight:700;padding:0;margin-bottom:8px}
 
   <section id="view-prefs" hidden>
     <form class="form" id="form" novalidate>
-      <div>
-        <h2>מה אתם מחפשים?</h2>
-        <p class="lead">לכל מאפיין בוחרים אם הוא חובה, יתרון או לא משנה. דירה שלא כתוב בה אם יש את מה שסימנתם כחובה תופיע עם סימון לבדוק, ורק דירה שכתוב בה במפורש שאין תוסתר.</p>
-      </div>
-      <fieldset>
-        <legend>שכונות</legend>
+      <div class="prog" id="prog" aria-hidden="true"></div>
+      <p class="stepno" id="stepno"></p>
+
+      <fieldset class="step" data-step="hoods">
+        <legend>באיזה אזור אתם מחפשים?</legend>
+        <p class="hint">אפשר לבחור כמה שכונות.</p>
         <div class="hoods" id="hoods"></div>
+        <button type="button" class="link" id="allhoods">לסמן את כל תל אביב</button>
       </fieldset>
-      <fieldset>
-        <legend>גודל ומחיר</legend>
+
+      <fieldset class="step" data-step="rooms" hidden>
+        <legend>כמה חדרים?</legend>
         <div class="row">
-          <label class="fld" for="p-rmin">חדרים, מינימום
+          <label class="fld" for="p-rmin">מינימום
             <select id="p-rmin"><option>1</option><option>1.5</option><option>2</option><option>2.5</option><option selected>3</option><option>3.5</option><option>4</option><option>4.5</option><option>5</option><option>6</option></select></label>
-          <label class="fld" for="p-rmax">חדרים, מקסימום
+          <label class="fld" for="p-rmax">מקסימום
             <select id="p-rmax"><option value="">בלי הגבלה</option><option>2</option><option>2.5</option><option>3</option><option>3.5</option><option>4</option><option>4.5</option><option>5</option><option>6</option></select></label>
-          <label class="fld" for="p-price">שכר דירה עד (₪ לחודש)
-            <input id="p-price" type="number" inputmode="numeric" min="1000" step="100" placeholder="למשל 9000"></label>
-          <label class="fld" for="p-flex">גמישות במחיר
-            <select id="p-flex"><option value="0">בלי</option><option value="5" selected>עד 5% מעל</option><option value="10">עד 10% מעל</option></select></label>
-          <label class="fld" for="p-sqm">מ"ר, מינימום
-            <input id="p-sqm" type="number" inputmode="numeric" min="0" step="5" placeholder="לא חובה"></label>
+          <label class="fld" for="p-sqm">מ"ר, מינימום (לא חובה)
+            <input id="p-sqm" type="number" inputmode="numeric" min="0" step="5"></label>
         </div>
       </fieldset>
-      <fieldset>
-        <legend>הבניין והדירה</legend>
+
+      <fieldset class="step" data-step="price" hidden>
+        <legend>מה התקציב?</legend>
+        <div class="row">
+          <label class="fld" for="p-price">שכר דירה עד (₪ לחודש)
+            <input id="p-price" type="number" inputmode="numeric" min="1000" step="100" placeholder="למשל 9000"></label>
+          <label class="fld" for="p-flex">גמישות
+            <select id="p-flex"><option value="0">בלי</option><option value="5" selected>עד 5% מעל</option><option value="10">עד 10% מעל</option></select></label>
+        </div>
+        <p class="hint">דירה שקצת מעל התקציב תופיע עם סימון "כמעט".</p>
+      </fieldset>
+
+      <fieldset class="step" data-step="entry" hidden>
+        <legend>מתי אתם רוצים להיכנס?</legend>
+        <div class="row">
+          <label class="fld" for="p-efrom">לא לפני
+            <input id="p-efrom" type="date"></label>
+          <label class="fld" for="p-eto">לא אחרי
+            <input id="p-eto" type="date"></label>
+        </div>
+        <p class="hint">אם אתם גמישים, השאירו ריק.</p>
+      </fieldset>
+
+      <fieldset class="step" data-step="feats" hidden>
+        <legend>מה חייב להיות בדירה?</legend>
+        <p class="hint">חובה מסתיר דירות שכתוב בהן שאין. דירה שלא כתוב בה כלום תופיע עם סימון "לבדוק".</p>
         <div class="feat" id="feats"></div>
       </fieldset>
-      <fieldset>
-        <legend>עוד</legend>
+
+      <fieldset class="step" data-step="more" hidden>
+        <legend>שני דברים אחרונים</legend>
         <div class="row">
           <label class="fld" for="p-ground">קומת קרקע
             <select id="p-ground"><option value="ok">אפשרי</option><option value="no">לא רוצה</option></select></label>
           <label class="fld" for="p-broker">תיווך
             <select id="p-broker"><option value="ok">גם דרך מתווך</option><option value="no">רק בלי תיווך</option></select></label>
-          <label class="fld" for="p-name">שם (לא חובה)
-            <input id="p-name" type="text" maxlength="40" autocomplete="off"></label>
         </div>
+        <p class="hint">ההעדפות נשמרות בדפדפן שלכם בלבד, בלי הרשמה. במכשיר אחר צריך למלא שוב.</p>
       </fieldset>
-      <p class="hint">ההעדפות נשמרות בדפדפן שלכם בלבד, בלי הרשמה. במכשיר אחר צריך למלא שוב.</p>
+
       <p class="formmsg" id="formmsg" role="alert"></p>
-      <button class="btn" type="submit" id="save">שמירה והצגת דירות</button>
+      <div class="stepnav">
+        <button class="btn ghost" type="button" id="back">חזרה</button>
+        <button class="btn" type="submit" id="save">הבא</button>
+      </div>
     </form>
   </section>
 </div>
@@ -228,6 +263,12 @@ legend{font-weight:700;padding:0;margin-bottom:8px}
     if (p.sqm_min && a.sqm != null && a.sqm < p.sqm_min) return null;
     if (p.ground === "no"){ if (a.ground === true) return null; if (a.floor == null && a.ground == null) todo.push("קומה"); }
     if (p.broker === "no" && a.broker === true) return null;
+    if (p.entry_from || p.entry_to){
+      const day=864e5, e=a.entry, base=new Date(a.posted_at||Date.now()).getTime();
+      const t = e==="immediate" ? base : (e ? new Date(e).getTime() : NaN);
+      if (isNaN(t)) todo.push("תאריך כניסה");
+      else { if (p.entry_from && t < new Date(p.entry_from).getTime()-30*day) return null; if (p.entry_to && e!=="immediate" && t > new Date(p.entry_to).getTime()+7*day) return null; }
+    }
     const f = a.features || {};
     for (const [k] of FEATS){
       if ((p.feats||{})[k] !== "must") continue;
@@ -242,6 +283,7 @@ legend{font-weight:700;padding:0;margin-bottom:8px}
     const a=r.data, j=r.j, st=r.st;
     const price = a.price ? '<div class="price">'+fmt(a.price)+' <small>₪ לחודש</small></div>' : '<div class="price unknown">מחיר לא צוין</div>';
     const meta=[]; if(a.rooms) meta.push(esc(a.rooms)+" חדרים"); if(a.sqm) meta.push(esc(a.sqm)+' מ"ר'); if(a.floor) meta.push("קומה "+esc(a.floor));
+    if(a.entry==="immediate") meta.push("כניסה מיידית"); else if(a.entry){ const d=new Date(a.entry); if(!isNaN(d)) meta.push("כניסה "+d.toLocaleDateString("he-IL",{day:"numeric",month:"numeric"})); }
     if(a.broker===true) meta.push("תיווך"); else if(a.broker===false) meta.push("ללא תיווך");
     const hood=(a.hoods||[]).map(h=>HOOD_NAME[h]).filter(Boolean)[0]; if(hood) meta.push(esc(hood));
     const f=a.features||{}, pf=(profile&&profile.feats)||{};
@@ -293,18 +335,28 @@ legend{font-weight:700;padding:0;margin-bottom:8px}
 
   $("hoods").innerHTML=HOODS.map(([k,n])=>'<label for="h-'+k+'"><input type="checkbox" id="h-'+k+'" value="'+k+'">'+esc(n)+'</label>').join("");
   $("feats").innerHTML=FEATS.map(([k,n])=>'<label class="fld" for="f-'+k+'">'+esc(n)+'<select id="f-'+k+'"><option value="any">לא משנה</option><option value="nice">יתרון</option><option value="must">חובה</option></select></label>').join("");
-  function fillForm(p){ if(!p) return; HOODS.forEach(([k])=>{ $("h-"+k).checked=(p.hoods||[]).includes(k); }); $("p-rmin").value=String(p.rooms_min||3); $("p-rmax").value=p.rooms_max?String(p.rooms_max):""; $("p-price").value=p.price_max||""; $("p-flex").value=String(p.flex||0); $("p-sqm").value=p.sqm_min||""; FEATS.forEach(([k])=>{ $("f-"+k).value=(p.feats||{})[k]||"any"; }); $("p-ground").value=p.ground||"ok"; $("p-broker").value=p.broker||"ok"; $("p-name").value=p.name||""; }
-  $("form").addEventListener("submit", async e=>{
-    e.preventDefault(); const msg=$("formmsg"); msg.textContent="";
-    const hoods=HOODS.map(([k])=>k).filter(k=>$("h-"+k).checked); const price=parseInt($("p-price").value,10);
-    if(!hoods.length){ msg.textContent="בחרו לפחות שכונה אחת."; return; }
-    if(!price||price<1000){ msg.textContent="כתבו שכר דירה מקסימלי בשקלים."; return; }
-    const rmin=parseFloat($("p-rmin").value), rmax=parseFloat($("p-rmax").value)||null;
-    if(rmax&&rmax<rmin){ msg.textContent="מקסימום החדרים קטן מהמינימום."; return; }
-    const p={hoods, rooms_min:rmin, rooms_max:rmax, price_max:price, flex:parseInt($("p-flex").value,10)||0, sqm_min:parseInt($("p-sqm").value,10)||null, feats:Object.fromEntries(FEATS.map(([k])=>[k,$("f-"+k).value])), ground:$("p-ground").value, broker:$("p-broker").value, name:$("p-name").value.trim(), updated_at:new Date().toISOString()};
-    profile=p; if(!LS.set("dirot_profile",p)) toast("הדפדפן לא מאפשר שמירה, ההעדפות יישמרו רק עד סגירת הדף"); else toast("ההעדפות נשמרו");
-    show("list");
+  function fillForm(p){ if(!p) return; HOODS.forEach(([k])=>{ $("h-"+k).checked=(p.hoods||[]).includes(k); }); $("p-rmin").value=String(p.rooms_min||3); $("p-rmax").value=p.rooms_max?String(p.rooms_max):""; $("p-price").value=p.price_max||""; $("p-flex").value=String(p.flex||0); $("p-sqm").value=p.sqm_min||""; FEATS.forEach(([k])=>{ $("f-"+k).value=(p.feats||{})[k]||"any"; }); $("p-ground").value=p.ground||"ok"; $("p-broker").value=p.broker||"ok"; $("p-efrom").value=p.entry_from||""; $("p-eto").value=p.entry_to||""; }
+  const STEPS=[...document.querySelectorAll(".step")]; let step=0;
+  $("prog").innerHTML=STEPS.map(()=>"<span></span>").join("");
+  function showStep(i){ step=i; STEPS.forEach((el,k)=>{ el.hidden=k!==i; }); [...$("prog").children].forEach((el,k)=>el.classList.toggle("on",k<=i)); $("stepno").textContent="שאלה "+(i+1)+" מתוך "+STEPS.length; $("back").hidden=i===0; $("save").textContent=i===STEPS.length-1?"הצגת דירות":"הבא"; $("formmsg").textContent=""; const f=STEPS[i].querySelector("input,select"); if(f&&view==="prefs") f.focus({preventScroll:true}); }
+  function stepError(name){
+    if(name==="hoods" && !HOODS.some(([k])=>$("h-"+k).checked)) return "בחרו לפחות שכונה אחת.";
+    if(name==="rooms"){ const mx=parseFloat($("p-rmax").value); if(mx && mx<parseFloat($("p-rmin").value)) return "מקסימום החדרים קטן מהמינימום."; }
+    if(name==="price"){ const v=parseInt($("p-price").value,10); if(!v||v<1000) return "כתבו שכר דירה מקסימלי בשקלים."; }
+    if(name==="entry"){ const a=$("p-efrom").value,b=$("p-eto").value; if(a&&b&&b<a) return "התאריך המאוחר קודם לתאריך המוקדם."; }
+    return "";
+  }
+  $("back").addEventListener("click",()=>{ if(step>0) showStep(step-1); });
+  $("allhoods").addEventListener("click",()=>{ const all=HOODS.every(([k])=>$("h-"+k).checked); HOODS.forEach(([k])=>{ $("h-"+k).checked=!all; }); });
+  $("form").addEventListener("submit", e=>{
+    e.preventDefault();
+    const err=stepError(STEPS[step].dataset.step); if(err){ $("formmsg").textContent=err; return; }
+    if(step<STEPS.length-1){ showStep(step+1); return; }
+    const p={hoods:HOODS.map(([k])=>k).filter(k=>$("h-"+k).checked), rooms_min:parseFloat($("p-rmin").value), rooms_max:parseFloat($("p-rmax").value)||null, price_max:parseInt($("p-price").value,10), flex:parseInt($("p-flex").value,10)||0, sqm_min:parseInt($("p-sqm").value,10)||null, entry_from:$("p-efrom").value||null, entry_to:$("p-eto").value||null, feats:Object.fromEntries(FEATS.map(([k])=>[k,$("f-"+k).value])), ground:$("p-ground").value, broker:$("p-broker").value, updated_at:new Date().toISOString()};
+    profile=p; toast(LS.set("dirot_profile",p) ? "ההעדפות נשמרו" : "הדפדפן לא מאפשר שמירה, ההעדפות יישמרו רק עד סגירת הדף");
+    show("list"); showStep(0);
   });
+  showStep(0);
 
   function scanLine(m){ const b=[]; if(m&&m.last_run) b.push('<span>סריקה אחרונה: <b>'+esc(dshort(m.last_run))+'</b></span>'); if(m&&m.groups) b.push('<span>'+esc(m.groups)+' קבוצות פייסבוק</span>'); if(m&&m.schedule) b.push('<span>'+esc(m.schedule)+'</span>'); $("scan").innerHTML=b.join("")||'<span>הדירות נאספות מקבוצות פייסבוק של תל אביב</span>'; }
 
