@@ -1,0 +1,401 @@
+{
+ "meta": {
+  "last_run": "2026-11-15T06:00:00Z",
+  "groups": 66,
+  "schedule": "כרגע במאגר רק דירות 4 חדרים ומעלה מצפון העיר"
+ },
+ "listings": {
+  "3092889574383270": {
+   "title": "4.5 חדרים ברחוב ה' באייר, כיכר המדינה",
+   "hoods": [
+    "new_north"
+   ],
+   "rooms": 4.5,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "מקלט בבניין"
+    },
+    "parking": {
+     "s": "yes"
+    },
+    "ac": {
+     "s": "yes"
+    }
+   },
+   "summary": "4 חדרי שינה, 2 חדרי רחצה, 3 כיווני אוויר. כניסה מיידית.",
+   "warnings": [],
+   "posted_at": "2026-11-12T11:35:00+02:00",
+   "group": "דירות מפה לאוזן בתל אביב",
+   "copies": 3,
+   "post_url": "https://www.facebook.com/groups/101875683484689/posts/3092889574383270/",
+   "price": 12000,
+   "sqm": 134,
+   "floor": "4",
+   "ground": false,
+   "broker": false
+  },
+  "40631077226483234": {
+   "title": "4 חדרים משופצת ברחוב אוסישקין",
+   "hoods": [
+    "old_north_n"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "מקלט בבניין"
+    },
+    "parking": {
+     "s": "yes",
+     "t": "בטאבו"
+    },
+    "renovated": {
+     "s": "yes"
+    }
+   },
+   "summary": "ועד בית 220 ₪, כניסה מיידית.",
+   "warnings": [],
+   "posted_at": "2026-11-13T14:32:00+02:00",
+   "group": "דירות להשכרה לזוגות, שותפים ומשפחות בתל אביב",
+   "copies": 13,
+   "post_url": "https://www.facebook.com/groups/458499457501175/posts/40631077226483234/",
+   "price": 12000,
+   "sqm": 85,
+   "floor": "2",
+   "ground": false,
+   "broker": true
+  },
+  "4736960089874161": {
+   "title": "4 חדרים עם מרפסת סגורה ברחוב כהנשטם",
+   "hoods": [
+    "old_north_n"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "מקלט"
+    },
+    "parking": {
+     "s": "yes"
+    },
+    "balcony": {
+     "s": "yes",
+     "t": "סגורה"
+    },
+    "ac": {
+     "s": "yes"
+    }
+   },
+   "summary": "גדולה ומרווחת, 3 כיווני אוויר, מטבח מאובזר. כניסה מיידית.",
+   "warnings": [],
+   "posted_at": "2026-11-12T13:55:00+02:00",
+   "group": "דירות להשכרה בתל אביב - המאגר המלא",
+   "copies": 1,
+   "post_url": "https://www.facebook.com/groups/tlv.rental.apartments/posts/4736960089874161/",
+   "price": 10000,
+   "floor": "2",
+   "ground": false,
+   "broker": false
+  },
+  "3342526339276525": {
+   "title": "4 חדרים ברחוב ליסין, ליד כיכר המדינה",
+   "hoods": [
+    "new_north"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "parking": {
+     "s": "yes",
+     "t": "בטאבו"
+    }
+   },
+   "summary": "2 חדרי רחצה, סלון גדול לכיוון דרום. ועד בית 280 ₪.",
+   "warnings": [],
+   "posted_at": "2026-11-14T23:05:00+02:00",
+   "group": "דירות להשכרה בתל אביב",
+   "copies": 17,
+   "post_url": "https://www.facebook.com/groups/305724686290054/posts/3342526339276525/",
+   "price": 12500,
+   "sqm": 100,
+   "floor": "4",
+   "ground": false,
+   "broker": true
+  },
+  "29390390540595469": {
+   "title": "4 חדרים חדשה עם 2 חניות, ליד פארק הירקון ומתחם בזל",
+   "hoods": [
+    "old_north_n"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "מקלט תת-קרקעי"
+    },
+    "parking": {
+     "s": "yes",
+     "t": "2 מקורות"
+    },
+    "balcony": {
+     "s": "yes",
+     "t": "20 מ\"ר"
+    },
+    "renovated": {
+     "s": "yes"
+    },
+    "pets": {
+     "s": "yes"
+    }
+   },
+   "summary": "2 חדרי רחצה, דוד שמש. ארנונה כ-800 ₪.",
+   "warnings": [
+    "יש עבודות תמ\"א ליד הבניין"
+   ],
+   "posted_at": "2026-11-14T16:29:00+02:00",
+   "group": "דירות להשכרה מכירה תל אביב",
+   "copies": 3,
+   "post_url": "https://www.facebook.com/groups/1196843027043598/posts/29390390540595469/",
+   "price": 12500,
+   "sqm": 85,
+   "floor": "1",
+   "ground": false,
+   "broker": true,
+   "hood_unsure": true
+  },
+  "3197829480387323": {
+   "title": "4 חדרים משופצת מול פארק הירקון",
+   "hoods": [
+    "old_north_n"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "parking": {
+     "s": "yes",
+     "t": "בטאבו"
+    },
+    "renovated": {
+     "s": "yes"
+    },
+    "ac": {
+     "s": "yes"
+    },
+    "pets": {
+     "s": "no"
+    }
+   },
+   "summary": "3 חדרי שינה, שיפוץ מקיף, שירותי אורחים. כניסה מיידית.",
+   "warnings": [],
+   "posted_at": "2026-11-13T12:13:00+02:00",
+   "group": "דירות למכירה והשכרה בצפון תל אביב",
+   "copies": 4,
+   "post_url": "https://www.facebook.com/groups/126133290890306/posts/3197829480387323/",
+   "price": 12500,
+   "sqm": 80,
+   "broker": true,
+   "hood_unsure": true
+  },
+  "10163988487907695": {
+   "title": "4 חדרים ברחוב ליסין עם 2 חניות",
+   "hoods": [
+    "new_north"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "מקלט"
+    },
+    "parking": {
+     "s": "yes",
+     "t": "2 עוקבות"
+    },
+    "renovated": {
+     "s": "yes"
+    },
+    "pets": {
+     "s": "no"
+    }
+   },
+   "summary": "משופצת, יחידת הורים. כניסה ב-1.12.",
+   "warnings": [
+    "יש פרויקט תמ\"א מאחורי הבניין"
+   ],
+   "posted_at": "2026-11-12T19:34:00+02:00",
+   "group": "דירות מפה לאוזן בת\"א",
+   "copies": 8,
+   "post_url": "https://www.facebook.com/groups/35819517694/posts/10163988487907695/",
+   "sqm": 110,
+   "floor": "2",
+   "ground": false,
+   "broker": true
+  },
+  "3342203209308838": {
+   "title": "פנטהאוז 4 חדרים בבניין לשימור, ליד נורדאו",
+   "hoods": [
+    "old_north_s",
+    "old_north_n"
+   ],
+   "rooms": 4,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "2 ממ\"דים"
+    },
+    "parking": {
+     "s": "yes"
+    },
+    "balcony": {
+     "s": "yes",
+     "t": "15 מ\"ר"
+    }
+   },
+   "summary": "יחידת הורים עם חדר ארונות. כניסה מיידית.",
+   "warnings": [],
+   "posted_at": "2026-11-14T17:34:00+02:00",
+   "group": "דירות להשכרה בתל אביב",
+   "copies": 1,
+   "post_url": "https://www.facebook.com/groups/305724686290054/posts/3342203209308838/",
+   "sqm": 160,
+   "floor": "אחרונה",
+   "ground": false,
+   "broker": true,
+   "hood_unsure": true
+  },
+  "40666567122934244": {
+   "title": "5 חדרים ברחוב ויתקין, 200 מטר מהים",
+   "hoods": [
+    "old_north_s",
+    "old_north_n"
+   ],
+   "rooms": 5,
+   "features": {
+    "balcony": {
+     "s": "yes",
+     "t": "15 מ\"ר"
+    }
+   },
+   "summary": "חזית לרחוב שקט, קרוב לחוף.",
+   "warnings": [],
+   "posted_at": "2026-11-14T21:30:00+02:00",
+   "group": "דירות להשכרה לזוגות, שותפים ומשפחות בתל אביב",
+   "copies": 1,
+   "post_url": "https://www.facebook.com/groups/458499457501175/posts/40666567122934244/",
+   "sqm": 160,
+   "hood_unsure": true
+  },
+  "4597613357123252": {
+   "title": "4 חדרים חדשה מקבלן ברחוב פרופסור שור",
+   "hoods": [
+    "new_north"
+   ],
+   "rooms": 4,
+   "features": {
+    "balcony": {
+     "s": "yes",
+     "t": "12 מ\"ר"
+    },
+    "renovated": {
+     "s": "yes"
+    }
+   },
+   "summary": "פרויקט חדש, עורפית ושקטה, יחידת הורים.",
+   "warnings": [],
+   "posted_at": "2026-11-14T19:52:00+02:00",
+   "group": "דירות להשכרה בתל אביב",
+   "copies": 1,
+   "post_url": "https://www.facebook.com/groups/1673941052823845/posts/4597613357123252/",
+   "sqm": 90,
+   "floor": "2",
+   "ground": false
+  },
+  "3199525703551034": {
+   "title": "4 חדרים בבניין חדש ליד פארק הירקון",
+   "hoods": [
+    "old_north_n",
+    "new_north",
+    "bavli"
+   ],
+   "rooms": 4,
+   "features": {
+    "parking": {
+     "s": "yes",
+     "t": "תת-קרקעית"
+    },
+    "balcony": {
+     "s": "yes",
+     "t": "12 מ\"ר"
+    },
+    "renovated": {
+     "s": "yes"
+    }
+   },
+   "summary": "2 חדרי רחצה, קרוב לרכבת הקלה. המודעה לא אומרת באיזה רחוב.",
+   "warnings": [],
+   "posted_at": "2026-11-14T18:04:00+02:00",
+   "group": "דירות למכירה והשכרה בצפון תל אביב",
+   "copies": 1,
+   "post_url": "https://www.facebook.com/groups/126133290890306/posts/3199525703551034/",
+   "sqm": 105,
+   "broker": true,
+   "hood_unsure": true
+  },
+  "3745257752315514": {
+   "title": "4.5 חדרים בסמטאות כיכר המדינה",
+   "hoods": [
+    "new_north"
+   ],
+   "rooms": 4.5,
+   "features": {
+    "elevator": {
+     "s": "yes"
+    },
+    "shelter": {
+     "s": "yes",
+     "t": "מקלט בבניין"
+    },
+    "parking": {
+     "s": "yes",
+     "t": "פרטית"
+    },
+    "renovated": {
+     "s": "yes"
+    }
+   },
+   "summary": "3 חדרי שינה וחצי חדר עבודה, סלון גדול, רחוב שקט.",
+   "warnings": [],
+   "posted_at": "2026-11-13T07:48:00+02:00",
+   "group": "דירות להשכרה בתל-אביב והסביבה",
+   "copies": 1,
+   "post_url": "https://www.facebook.com/groups/662327187275268/posts/3745257752315514/",
+   "price": 11000,
+   "sqm": 110,
+   "broker": true
+  }
+ }
+}

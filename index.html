@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="robots" content="noindex,nofollow">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>דירות להשכרה בתל אביב</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&family=Secular+One&display=swap" rel="stylesheet">
+<style>
+/* layout: one column header + summary strip, then a wrapping grid of listing cards; state shown by a colored edge stripe and chips */
+:root{
+  --paper:#F2F5F4; --card:#FFFFFF; --ink:#15212A; --muted:#5A6A72; --line:#D6DEDD;
+  --sea:#0E6B78; --sea-soft:#E1F0F1;
+  --good:#1D7A49; --good-soft:#E3F3EA; --warn:#A86B12; --warn-soft:#FBF0DC; --bad:#B0281F; --bad-soft:#FBE6E4;
+  --display:"Secular One","Heebo",system-ui,sans-serif; --body:"Heebo",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --paper:#0E1518; --card:#162127; --ink:#E5EDEF; --muted:#93A5AC; --line:#26343B;
+    --sea:#55B6C2; --sea-soft:#15343A;
+    --good:#5DC58E; --good-soft:#143326; --warn:#E3B04B; --warn-soft:#3A2D12; --bad:#F2796F; --bad-soft:#3D1C1A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#0E1518; --card:#162127; --ink:#E5EDEF; --muted:#93A5AC; --line:#26343B;
+  --sea:#55B6C2; --sea-soft:#15343A;
+  --good:#5DC58E; --good-soft:#143326; --warn:#E3B04B; --warn-soft:#3A2D12; --bad:#F2796F; --bad-soft:#3D1C1A;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:15px;line-height:1.55}
+.wrap{max-width:1180px;margin:0 auto;padding:28px 20px 60px;display:grid;gap:22px}
+header{display:grid;gap:6px}
+h1{font-family:var(--display);font-weight:400;font-size:34px;line-height:1.15;margin:0;text-wrap:balance}
+.criteria{color:var(--muted);margin:0;max-width:70ch}
+.scan{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:6px 14px}
+.scan b{color:var(--ink);font-weight:500}
+.bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0}
+.counts{display:flex;flex-wrap:wrap;gap:8px}
+.count{display:flex;align-items:baseline;gap:6px;padding:4px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-size:13px}
+.count .n{font-family:var(--display);font-size:18px;font-variant-numeric:tabular-nums}
+.count.full .n{color:var(--good)} .count.near .n{color:var(--warn)} .count.check .n{color:var(--sea)}
+.controls{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:3px}
+.tabs button{font:inherit;font-size:13px;border:0;background:transparent;color:var(--muted);padding:5px 10px;border-radius:7px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--sea);color:var(--card)}
+.tabs button:focus-visible,select:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+select{font:inherit;font-size:13px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 8px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px 14px;display:grid;gap:10px;position:relative;overflow:hidden}
+.card::before{content:"";position:absolute;inset:0 0 0 auto;width:5px;background:var(--sea)}
+.card.full::before{background:var(--good)} .card.near::before{background:var(--warn)}
+.card.dim{opacity:.55}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}
+.price{font-family:var(--display);font-size:26px;line-height:1;font-variant-numeric:tabular-nums}
+.price small{font-family:var(--body);font-size:13px;color:var(--muted)}
+.price.unknown{font-size:18px;color:var(--muted)}
+.pill{font-size:12px;font-weight:500;padding:3px 9px;border-radius:999px;white-space:nowrap}
+.pill.full{background:var(--good-soft);color:var(--good)} .pill.near{background:var(--warn-soft);color:var(--warn)} .pill.check{background:var(--sea-soft);color:var(--sea)}
+.title{font-weight:700;font-size:16px;margin:0;text-wrap:balance}
+.meta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 12px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{font-size:12.5px;padding:3px 8px;border-radius:6px;border:1px solid var(--line);display:inline-flex;gap:5px;align-items:center}
+.chip .m{font-weight:700}
+.chip.yes .m{color:var(--good)} .chip.no{background:var(--bad-soft);border-color:transparent} .chip.no .m{color:var(--bad)} .chip.check .m{color:var(--warn)}
+.warn{font-size:13px;background:var(--bad-soft);color:var(--bad);padding:6px 10px;border-radius:8px}
+.desc{margin:0;font-size:14px}
+.todo{margin:0;padding:8px 12px;background:var(--warn-soft);border-radius:8px;font-size:13px}
+.todo b{color:var(--warn)}
+.foot{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;justify-content:space-between;border-top:1px dashed var(--line);padding-top:10px;font-size:13px}
+.foot a{color:var(--sea);font-weight:500;text-decoration:none}
+.foot a:hover{text-decoration:underline}
+.phone{font-variant-numeric:tabular-nums;color:var(--muted)}
+textarea{width:100%;font:inherit;font-size:13px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:6px 8px;resize:vertical;min-height:34px}
+.empty,.notice{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:22px;color:var(--muted);text-align:center}
+.notice.err{color:var(--bad)}
+.toast{position:fixed;inset:auto 16px 16px auto;background:var(--ink);color:var(--paper);padding:8px 14px;border-radius:8px;font-size:13px;opacity:0;transition:opacity .2s;pointer-events:none}
+.toast.on{opacity:1}
+@media (prefers-reduced-motion: reduce){.toast{transition:none}}
+@media (max-width:420px){h1{font-size:28px}.grid{grid-template-columns:1fr}.wrap{padding:20px 16px 48px}}
+
+.nav{display:flex;gap:6px;flex-wrap:wrap}
+.nav button{font:inherit;font-size:14px;font-weight:500;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:7px 14px;border-radius:9px;cursor:pointer}
+.nav button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.nav button:focus-visible,.btn:focus-visible,input:focus-visible{outline:2px solid var(--sea);outline-offset:2px}
+.form{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;display:grid;gap:22px;max-width:820px}
+.form h2{font-family:var(--display);font-weight:400;font-size:22px;margin:0}
+.form p.lead{margin:0;color:var(--muted);max-width:65ch}
+fieldset{border:0;padding:0;margin:0;display:grid;gap:10px}
+legend{font-weight:700;padding:0;margin-bottom:8px}
+.hint{font-size:13px;color:var(--muted);margin:0}
+.row{display:flex;flex-wrap:wrap;gap:12px 18px}
+.fld{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.fld input,.fld select{font:inherit;font-size:15px;color:var(--ink);background:var(--paper);border:1px solid var(--line);border-radius:8px;padding:7px 9px;min-width:130px}
+.hoods{display:flex;flex-wrap:wrap;gap:7px}
+.hoods label{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 11px;cursor:pointer;background:var(--paper);display:inline-flex;gap:6px;align-items:center}
+.hoods input{accent-color:var(--sea)}
+.hoods label:has(input:checked){background:var(--sea-soft);border-color:var(--sea);color:var(--sea)}
+.feat{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px 18px}
+.feat .fld{grid-template-columns:1fr auto;align-items:center;color:var(--ink);font-size:14px}
+.feat select{min-width:0}
+.btn{font:inherit;font-weight:700;border:0;background:var(--sea);color:var(--card);padding:10px 20px;border-radius:9px;cursor:pointer;justify-self:start}
+.btn[disabled]{opacity:.5;cursor:default}
+.formmsg{font-size:13px;color:var(--bad);margin:0}
+
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <h1>דירות להשכרה בתל אביב</h1>
+    <p class="criteria" id="crit">ממלאים פעם אחת מה מחפשים, והרשימה מציגה רק דירות מקבוצות הפייסבוק שעונות על זה, עם קישור למודעה המקורית.</p>
+    <div class="scan" id="scan"><span>טוען…</span></div>
+    <div class="nav" role="group" aria-label="תצוגה">
+      <button type="button" id="nav-list" aria-pressed="true">הדירות שלי</button>
+      <button type="button" id="nav-prefs" aria-pressed="false">ההעדפות שלי</button>
+    </div>
+  </header>
+
+  <section id="view-list">
+    <div class="bar">
+      <div class="counts" id="counts"></div>
+      <div class="controls">
+        <div class="tabs" role="group" aria-label="סינון לפי סטטוס" id="tabs">
+          <button type="button" data-f="active" aria-pressed="true">פעילות</button>
+          <button type="button" data-f="new" aria-pressed="false">חדשות</button>
+          <button type="button" data-f="contacted" aria-pressed="false">יצרתי קשר</button>
+          <button type="button" data-f="visit" aria-pressed="false">ביקור נקבע</button>
+          <button type="button" data-f="no" aria-pressed="false">לא רלוונטי</button>
+          <button type="button" data-f="all" aria-pressed="false">הכול</button>
+        </div>
+        <label for="sort" class="scan" style="margin:0">מיון</label>
+        <select id="sort">
+          <option value="match">התאמה</option>
+          <option value="posted">פורסמו לאחרונה</option>
+          <option value="price">מחיר</option>
+        </select>
+      </div>
+    </div>
+    <main id="list" style="margin-top:18px"><div class="notice">טוען דירות…</div></main>
+  </section>
+
+  <section id="view-prefs" hidden>
+    <form class="form" id="form" novalidate>
+      <div>
+        <h2>מה אתם מחפשים?</h2>
+        <p class="lead">לכל מאפיין בוחרים אם הוא חובה, יתרון או לא משנה. דירה שלא כתוב בה אם יש את מה שסימנתם כחובה תופיע עם סימון לבדוק, ורק דירה שכתוב בה במפורש שאין תוסתר.</p>
+      </div>
+      <fieldset>
+        <legend>שכונות</legend>
+        <div class="hoods" id="hoods"></div>
+      </fieldset>
+      <fieldset>
+        <legend>גודל ומחיר</legend>
+        <div class="row">
+          <label class="fld" for="p-rmin">חדרים, מינימום
+            <select id="p-rmin"><option>1</option><option>1.5</option><option>2</option><option>2.5</option><option selected>3</option><option>3.5</option><option>4</option><option>4.5</option><option>5</option><option>6</option></select></label>
+          <label class="fld" for="p-rmax">חדרים, מקסימום
+            <select id="p-rmax"><option value="">בלי הגבלה</option><option>2</option><option>2.5</option><option>3</option><option>3.5</option><option>4</option><option>4.5</option><option>5</option><option>6</option></select></label>
+          <label class="fld" for="p-price">שכר דירה עד (₪ לחודש)
+            <input id="p-price" type="number" inputmode="numeric" min="1000" step="100" placeholder="למשל 9000"></label>
+          <label class="fld" for="p-flex">גמישות במחיר
+            <select id="p-flex"><option value="0">בלי</option><option value="5" selected>עד 5% מעל</option><option value="10">עד 10% מעל</option></select></label>
+          <label class="fld" for="p-sqm">מ"ר, מינימום
+            <input id="p-sqm" type="number" inputmode="numeric" min="0" step="5" placeholder="לא חובה"></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>הבניין והדירה</legend>
+        <div class="feat" id="feats"></div>
+      </fieldset>
+      <fieldset>
+        <legend>עוד</legend>
+        <div class="row">
+          <label class="fld" for="p-ground">קומת קרקע
+            <select id="p-ground"><option value="ok">אפשרי</option><option value="no">לא רוצה</option></select></label>
+          <label class="fld" for="p-broker">תיווך
+            <select id="p-broker"><option value="ok">גם דרך מתווך</option><option value="no">רק בלי תיווך</option></select></label>
+          <label class="fld" for="p-name">שם (לא חובה)
+            <input id="p-name" type="text" maxlength="40" autocomplete="off"></label>
+        </div>
+      </fieldset>
+      <p class="hint">ההעדפות נשמרות בדפדפן שלכם בלבד, בלי הרשמה. במכשיר אחר צריך למלא שוב.</p>
+      <p class="formmsg" id="formmsg" role="alert"></p>
+      <button class="btn" type="submit" id="save">שמירה והצגת דירות</button>
+    </form>
+  </section>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script>
+(function(){
+  const HOODS = [["old_north_n","הצפון הישן, מז'בוטינסקי צפונה"],["old_north_s","הצפון הישן, עד ז'בוטינסקי"],["new_north","הצפון החדש וכיכר המדינה"],["bavli","בבלי"],["lev_hair","לב העיר"],["kerem","כרם התימנים"],["neve_tzedek","נווה צדק"],["florentin","פלורנטין"],["montefiore","מונטיפיורי ושרונה"],["nahalat_yitzhak","נחלת יצחק וביצרון"],["yad_eliyahu","יד אליהו"],["south_east","שפירא, התקווה וקריית שלום"],["jaffa","יפו"],["ramat_aviv","רמת אביב"],["ramat_aviv_g","רמת אביב ג' ונווה אביבים"],["lamed","תוכנית ל' וכוכב הצפון"],["hadar_yosef","הדר יוסף ונאות אפקה"],["ramat_hahayal","רמת החייל וצהלה"],["tel_baruch","תל ברוך"]];
+  const HOOD_NAME = Object.fromEntries(HOODS);
+  const FEATS = [["elevator","מעלית"],["shelter","ממ\"ד, ממ\"ק או מקלט"],["parking","חניה"],["balcony","מרפסת"],["ac","מיזוג"],["renovated","משופצת או חדשה"],["furnished","מרוהטת"],["pets","מותר בעלי חיים"]];
+  const FEAT_SHORT = {elevator:"מעלית",shelter:"מרחב מוגן",parking:"חניה",balcony:"מרפסת",ac:"מיזוג",renovated:"משופצת",furnished:"ריהוט",pets:"בעלי חיים"};
+  const STATUS = {new:"חדשה", contacted:"יצרתי קשר", visit:"ביקור נקבע", no:"לא רלוונטי"};
+  const MATCH = {full:"מתאימה", near:"כמעט", check:"לבדוק"};
+  const ORDER = {full:0, near:1, check:2};
+  let db=null, uid=null, canWrite=true, listings=[], states={}, profile=null, filter="active", sort="match", view="list";
+
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s == null ? "" : s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const fmt = n => Number(n).toLocaleString("he-IL");
+  function toast(m){ const t=$("toast"); t.textContent=m; t.classList.add("on"); clearTimeout(toast.h); toast.h=setTimeout(()=>t.classList.remove("on"),2600); }
+  function rel(iso){ const d=new Date(iso); if(isNaN(d)) return ""; const h=(Date.now()-d)/36e5; if(h<1) return "לפני פחות משעה"; if(h<24) return "לפני "+Math.round(h)+" שעות"; const x=Math.floor(h/24); return x===1?"אתמול":x===2?"לפני יומיים":"לפני "+x+" ימים"; }
+  function dshort(iso){ const d=new Date(iso); return isNaN(d)?"":d.toLocaleDateString("he-IL",{day:"numeric",month:"short"})+" "+d.toLocaleTimeString("he-IL",{hour:"2-digit",minute:"2-digit"}); }
+  const fbUrl = u => typeof u==="string" && /^https:\/\/(www\.|m\.)?facebook\.com\//.test(u) ? u : null;
+
+  // Returns null when the listing explicitly fails the profile, else {m, todo[]}
+  function judge(a, p){
+    const todo=[]; let near=false;
+    const hs = Array.isArray(a.hoods) ? a.hoods : [];
+    if (p.hoods && p.hoods.length){
+      if (!hs.length) todo.push("שכונה");
+      else if (!hs.some(h => p.hoods.includes(h))) return null;
+      else if (a.hood_unsure || !hs.every(h => p.hoods.includes(h))) todo.push("המיקום המדויק");
+    }
+    if (a.rooms == null) todo.push("מספר חדרים");
+    else { if (a.rooms < p.rooms_min) return null; if (p.rooms_max && a.rooms > p.rooms_max) return null; }
+    if (a.price == null) todo.push("מחיר");
+    else if (p.price_max){ if (a.price > p.price_max*(1+(p.flex||0)/100)) return null; if (a.price > p.price_max) near=true; }
+    if (p.sqm_min && a.sqm != null && a.sqm < p.sqm_min) return null;
+    if (p.ground === "no"){ if (a.ground === true) return null; if (a.floor == null && a.ground == null) todo.push("קומה"); }
+    if (p.broker === "no" && a.broker === true) return null;
+    const f = a.features || {};
+    for (const [k] of FEATS){
+      if ((p.feats||{})[k] !== "must") continue;
+      const s = f[k] && f[k].s;
+      if (s === "no") return null;
+      if (s !== "yes") todo.push(FEAT_SHORT[k]);
+    }
+    return {m: todo.length ? "check" : near ? "near" : "full", todo, over: near ? a.price - p.price_max : 0};
+  }
+
+  function card(r){
+    const a=r.data, j=r.j, st=r.st;
+    const price = a.price ? '<div class="price">'+fmt(a.price)+' <small>₪ לחודש</small></div>' : '<div class="price unknown">מחיר לא צוין</div>';
+    const meta=[]; if(a.rooms) meta.push(esc(a.rooms)+" חדרים"); if(a.sqm) meta.push(esc(a.sqm)+' מ"ר'); if(a.floor) meta.push("קומה "+esc(a.floor));
+    if(a.broker===true) meta.push("תיווך"); else if(a.broker===false) meta.push("ללא תיווך");
+    const hood=(a.hoods||[]).map(h=>HOOD_NAME[h]).filter(Boolean)[0]; if(hood) meta.push(esc(hood));
+    const f=a.features||{}, pf=(profile&&profile.feats)||{};
+    const chips = FEATS.map(([k]) => { const v=f[k]; const want=pf[k]==="must"||pf[k]==="nice"; if(!v && !want) return ""; const s=v&&(v.s==="yes"||v.s==="no")?v.s:"check"; if(s==="check"&&pf[k]!=="must") return "";
+      return '<span class="chip '+s+'"><span class="m" aria-hidden="true">'+(s==="yes"?"✓":s==="no"?"✗":"?")+'</span>'+esc(FEAT_SHORT[k])+(v&&v.t?": "+esc(v.t):"")+'</span>'; }).join("");
+    const warns=(a.warnings||[]).slice(); if(j.over) warns.unshift(fmt(j.over)+" ₪ מעל התקציב שלך");
+    const url=fbUrl(a.post_url);
+    const phone = '';
+    const opts=Object.entries(STATUS).map(([k,v])=>'<option value="'+k+'"'+(k===st.status?" selected":"")+'>'+v+'</option>').join("");
+    const dis = canWrite ? "" : " disabled";
+    return '<article class="card '+j.m+(st.status==="no"?" dim":"")+'">'+
+      '<div class="top">'+price+'<span class="pill '+j.m+'">'+MATCH[j.m]+'</span></div>'+
+      '<h2 class="title">'+esc(a.title)+'</h2><div class="meta">'+meta.join(" · ")+'</div>'+
+      '<div class="chips">'+chips+'</div>'+warns.map(w=>'<div class="warn">'+esc(w)+'</div>').join("")+
+      (a.summary?'<p class="desc">'+esc(a.summary)+'</p>':"")+
+      (j.todo.length?'<p class="todo"><b>לבדוק מול המפרסם:</b> '+j.todo.map(esc).join(" · ")+'</p>':"")+
+      '<div class="meta">'+(a.posted_at?'<span title="'+esc(dshort(a.posted_at))+'">פורסם '+esc(rel(a.posted_at))+'</span>':"")+(a.group?'<span>'+esc(a.group)+(a.copies>1?" ועוד "+(a.copies-1)+" קבוצות":"")+'</span>':"")+'</div>'+
+      '<textarea id="note-'+esc(r.id)+'" aria-label="הערה שלי" placeholder="הערה שלי (נשמרת בדפדפן הזה)"'+dis+'>'+esc(st.note||"")+'</textarea>'+
+      '<div class="foot">'+(url?'<a href="'+esc(url)+'" target="_blank" rel="noopener">למודעה בפייסבוק</a>':'<span></span>')+phone+
+      '<select id="st-'+esc(r.id)+'" aria-label="סטטוס"'+dis+'>'+opts+'</select></div></article>';
+  }
+
+  function render(){
+    if (view !== "list") return;
+    if (!profile){ $("counts").innerHTML=""; $("list").innerHTML='<div class="empty">עוד לא מילאתם העדפות. עברו ל"ההעדפות שלי", זה לוקח דקה, ואז יופיעו כאן הדירות שמתאימות לכם.</div>'; return; }
+    const rows=[]; for(const d of listings){ const j=judge(d.data, profile); if(j) rows.push({id:d.id, data:d.data, j, st:Object.assign({status:"new"}, states[d.id]||{})}); }
+    const c={full:0,near:0,check:0}; rows.forEach(r=>{ if(r.st.status!=="no") c[r.j.m]++; });
+    $("counts").innerHTML='<span class="count full"><span class="n">'+c.full+'</span>מתאימות</span><span class="count near"><span class="n">'+c.near+'</span>כמעט</span><span class="count check"><span class="n">'+c.check+'</span>לבדוק</span>';
+    let out=rows.filter(r=> filter==="all" ? true : filter==="active" ? r.st.status!=="no" : r.st.status===filter);
+    out.sort((x,y)=>{ if(sort==="price") return (x.data.price||1e9)-(y.data.price||1e9); const t=String(y.data.posted_at||"").localeCompare(String(x.data.posted_at||"")); return sort==="posted" ? t : (ORDER[x.j.m]-ORDER[y.j.m]) || t; });
+    if(!rows.length){ $("list").innerHTML='<div class="empty">אין כרגע דירות שעונות על ההעדפות שלכם. הסריקה הבאה תוסיף לכאן כל דירה מתאימה. אפשר גם להרחיב שכונות או תקציב.</div>'; return; }
+    if(!out.length){ $("list").innerHTML='<div class="empty">אין דירות בסטטוס הזה.</div>'; return; }
+    $("list").innerHTML='<div class="grid">'+out.map(card).join("")+'</div>';
+  }
+
+  const LS={get(k,d){try{const v=localStorage.getItem(k);return v?JSON.parse(v):d;}catch(e){return d;}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v));return true;}catch(e){return false;}}};
+  function saveState(id, patch){
+    states[id]=Object.assign({status:"new"}, states[id]||{}, patch);
+    toast(LS.set("dirot_states",states) ? "נשמר" : "הדפדפן לא מאפשר שמירה, השינוי יישמר רק עד סגירת הדף");
+    render();
+  }
+  $("list").addEventListener("change", e=>{ const el=e.target; if(el.id&&el.id.startsWith("st-")) saveState(el.id.slice(3), {status:el.value}); });
+  $("list").addEventListener("focusout", e=>{ const el=e.target; if(!el.id||!el.id.startsWith("note-")) return; const id=el.id.slice(5); if(((states[id]||{}).note||"")!==el.value) saveState(id,{note:el.value}); });
+  $("tabs").addEventListener("click", e=>{ const b=e.target.closest("button"); if(!b) return; filter=b.dataset.f; $("tabs").querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b))); render(); });
+  $("sort").addEventListener("change", e=>{ sort=e.target.value; render(); });
+
+  function show(v){ view=v; $("view-list").hidden=v!=="list"; $("view-prefs").hidden=v!=="prefs"; $("nav-list").setAttribute("aria-pressed",String(v==="list")); $("nav-prefs").setAttribute("aria-pressed",String(v==="prefs")); if(v==="list") render(); }
+  $("nav-list").addEventListener("click",()=>show("list")); $("nav-prefs").addEventListener("click",()=>show("prefs"));
+
+  $("hoods").innerHTML=HOODS.map(([k,n])=>'<label for="h-'+k+'"><input type="checkbox" id="h-'+k+'" value="'+k+'">'+esc(n)+'</label>').join("");
+  $("feats").innerHTML=FEATS.map(([k,n])=>'<label class="fld" for="f-'+k+'">'+esc(n)+'<select id="f-'+k+'"><option value="any">לא משנה</option><option value="nice">יתרון</option><option value="must">חובה</option></select></label>').join("");
+  function fillForm(p){ if(!p) return; HOODS.forEach(([k])=>{ $("h-"+k).checked=(p.hoods||[]).includes(k); }); $("p-rmin").value=String(p.rooms_min||3); $("p-rmax").value=p.rooms_max?String(p.rooms_max):""; $("p-price").value=p.price_max||""; $("p-flex").value=String(p.flex||0); $("p-sqm").value=p.sqm_min||""; FEATS.forEach(([k])=>{ $("f-"+k).value=(p.feats||{})[k]||"any"; }); $("p-ground").value=p.ground||"ok"; $("p-broker").value=p.broker||"ok"; $("p-name").value=p.name||""; }
+  $("form").addEventListener("submit", async e=>{
+    e.preventDefault(); const msg=$("formmsg"); msg.textContent="";
+    const hoods=HOODS.map(([k])=>k).filter(k=>$("h-"+k).checked); const price=parseInt($("p-price").value,10);
+    if(!hoods.length){ msg.textContent="בחרו לפחות שכונה אחת."; return; }
+    if(!price||price<1000){ msg.textContent="כתבו שכר דירה מקסימלי בשקלים."; return; }
+    const rmin=parseFloat($("p-rmin").value), rmax=parseFloat($("p-rmax").value)||null;
+    if(rmax&&rmax<rmin){ msg.textContent="מקסימום החדרים קטן מהמינימום."; return; }
+    const p={hoods, rooms_min:rmin, rooms_max:rmax, price_max:price, flex:parseInt($("p-flex").value,10)||0, sqm_min:parseInt($("p-sqm").value,10)||null, feats:Object.fromEntries(FEATS.map(([k])=>[k,$("f-"+k).value])), ground:$("p-ground").value, broker:$("p-broker").value, name:$("p-name").value.trim(), updated_at:new Date().toISOString()};
+    profile=p; if(!LS.set("dirot_profile",p)) toast("הדפדפן לא מאפשר שמירה, ההעדפות יישמרו רק עד סגירת הדף"); else toast("ההעדפות נשמרו");
+    show("list");
+  });
+
+  function scanLine(m){ const b=[]; if(m&&m.last_run) b.push('<span>סריקה אחרונה: <b>'+esc(dshort(m.last_run))+'</b></span>'); if(m&&m.groups) b.push('<span>'+esc(m.groups)+' קבוצות פייסבוק</span>'); if(m&&m.schedule) b.push('<span>'+esc(m.schedule)+'</span>'); $("scan").innerHTML=b.join("")||'<span>הדירות נאספות מקבוצות פייסבוק של תל אביב</span>'; }
+
+  (async function init(){
+    profile=LS.get("dirot_profile",null); states=LS.get("dirot_states",{});
+    if(profile) fillForm(profile); else show("prefs");
+    try{
+      const r=await fetch("listings.json?d="+new Date().toISOString().slice(0,13),{cache:"no-store"});
+      if(!r.ok) throw new Error(r.status);
+      const j=await r.json();
+      listings=Object.entries(j.listings||{}).map(([id,data])=>({id,data}));
+      scanLine(j.meta||null); render();
+    }catch(e){ scanLine(null); if(view==="list") $("list").innerHTML='<div class="notice err">לא הצלחתי לטעון את רשימת הדירות. בדקו את החיבור לאינטרנט ורעננו את הדף.</div>'; }
+  })();
+})();
+</script>
+</body>
+</html>
